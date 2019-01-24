@@ -15,10 +15,13 @@
     else {
         $login = $_POST['login'];
         $haslo = $_POST['haslo'];
+        $login = htmlentities($login,ENT_QUOTES,"UTF-8");
+        $haslo = htmlentities($haslo,ENT_QUOTES,"UTF-8");
 
-        $sql = "SELECT * FROM uzytkownicy WHERE user='$login' AND pass='$haslo'";
-
-        if($rezultat = @$polaczenie->query($sql)){
+        if($rezultat = @$polaczenie->query(
+                sprintf("SELECT * FROM uzytkownicy WHERE user='%s' AND pass='%s'",
+                mysqli_real_escape_string($polaczenie,$login),          //funkcja zabezpieczajaca przed wstrzykiwaniem SQL
+                mysqli_real_escape_string($polaczenie,$haslo)))){
             $ilu_userow = $rezultat->num_rows;
             if($ilu_userow>0){
                 $_SESSION['zalogowany']=true;
