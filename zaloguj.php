@@ -7,47 +7,53 @@ if ((!isset($_POST['login'])) || (!isset($_POST['haslo']))) {
 }
 
 require_once "connect.php";
+mysqli_report(MYSQLI_REPORT_STRICT);
+try {
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    if ($polaczenie->connect_errno != 0) {
+        throw new Exception(mysqli_connect_error());
+    } else {
+        $login = $_POST['login'];
+        $haslo = $_POST['haslo'];
 
-$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-if ($polaczenie->connect_errno != 0) {
-    echo "Error: " . $polaczenie->connect_errno;
-} else {
-    $login = $_POST['login'];
-    $haslo = $_POST['haslo'];
+        $login = htmlentities($login, ENT_QUOTES, "UTF-8");     //login jest unikatowy
 
-    $login = htmlentities($login, ENT_QUOTES, "UTF-8");     //login jest unikatowy
+        if ($rezultat = $polaczenie->query(
+            sprintf("SELECT * FROM uzytkownicy WHERE user='%s'",
+                mysqli_real_escape_string($polaczenie, $login)))) {//funkcja zabezpieczajaca przed wstrzykiwaniem SQL
+            $ilu_userow = $rezultat->num_rows;
+            if ($ilu_userow > 0) {
+                $wiersz = $rezultat->fetch_assoc();
+                if (password_verify($haslo, $wiersz['pass'])) {
+                    $_SESSION['zalogowany'] = true;
+                    $_SESSION['id'] = $wiersz['id'];
+                    $_SESSION['user'] = $wiersz['user'];
+                    $_SESSION['imie'] = $wiersz['imie'];
+                    $_SESSION['nazwisko'] = $wiersz['nazwisko'];
+                    $_SESSION['email'] = $wiersz['email'];
+                    $_SESSION['miasto'] = $wiersz['miasto'];
+                    $_SESSION['adres'] = $wiersz['adres'];
 
-    if ($rezultat = @$polaczenie->query(
-        sprintf("SELECT * FROM uzytkownicy WHERE user='%s'",
-            mysqli_real_escape_string($polaczenie, $login)))) {//funkcja zabezpieczajaca przed wstrzykiwaniem SQL
-        $ilu_userow = $rezultat->num_rows;
-        if ($ilu_userow > 0) {
-            $wiersz = $rezultat->fetch_assoc();
-            if (password_verify($haslo, $wiersz['pass'])) {
-                $_SESSION['zalogowany'] = true;
-                $_SESSION['id'] = $wiersz['id'];
-                $_SESSION['user'] = $wiersz['user'];
-                $_SESSION['imie'] = $wiersz['imie'];
-                $_SESSION['nazwisko'] = $wiersz['nazwisko'];
-                $_SESSION['email'] = $wiersz['email'];
-                $_SESSION['miasto'] = $wiersz['miasto'];
-                $_SESSION['adres'] = $wiersz['adres'];
+                    unset($_SESSION['blad']);
+                    $rezultat->free_result();
+                    header('Location: dane.php');
+                } else {
+                    $_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
+                    header('Location: index.php');
+                }
 
-                unset($_SESSION['blad']);
-                $rezultat->free_result();
-                header('Location: dane.php');
             } else {
                 $_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
                 header('Location: index.php');
             }
 
         } else {
-            $_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
-            header('Location: index.php');
+            throw new Exception($polaczenie->error);
         }
+        $polaczenie->close();
     }
-    $polaczenie->close();
+} catch (Exception $e) {
+    echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności i prosimy o wizytę w innym terminie!</span>';
+    echo '<br />Informacja developerska: ' . $e;
 }
-
-
 ?>
