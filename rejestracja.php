@@ -32,8 +32,8 @@ if (isset($_POST['nick'])) {
     }
     $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
 
-    //todo sprawdzenie poprawności imienia i nazwiska
-    /* $imie = $_POST['imie'];
+    //todo walidacja imienia i nazwiska
+    /*$imie = $_POST['imie'];
      if((strlen($imie) < 2) || (strlen($imie) > 20)){
          $wszystko_OK = false;
          $_SESSION['e_imie'] = "Imie musi posiadać od 2 do 30 znaków";
@@ -62,7 +62,7 @@ if (isset($_POST['nick'])) {
         $_SESSION['e_email'] = "Podaj poprawny adres email";
     }
 
-    //todo sprawdzenie poprawności miasta i adresu
+    //todo walidacja miasta i adresu
     /*$miasto = $_POST['miasto'];
     if((strlen($imie) < 2) || (strlen($imie) > 20)) {
         $wszystko_OK = false;
