@@ -36,7 +36,6 @@ if ($polaczenie->connect_errno != 0) {
                 unset($_SESSION['blad']);
                 $rezultat->free_result();
                 header('Location: dane.php');
-
             } else {
                 $_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
                 header('Location: index.php');

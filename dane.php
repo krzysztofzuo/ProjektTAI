@@ -11,7 +11,7 @@ if (!isset($_SESSION['zalogowany'])) {
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Dane konta</title>
+    <title>Projekt TAI</title>
 </head>
 
 <body>

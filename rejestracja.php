@@ -1,11 +1,15 @@
 <?php
 session_start();
 if (isset($_POST['nick'])) {
-    //Udana walidacja? Załóżmy, że tak
+    //sprawdzenie poprawności walidacji
     $wszystko_OK = true;
     $nick = $_POST['nick'];
+    $imie = $_POST['imie'];
+    $nazwisko = $_POST['nazwisko'];
+    $miasto = $_POST['miasto'];
+    $adres = $_POST['adres'];
 
-    //sprawdzenie długości nicku
+    //sprawdzenie długości loginu
     if ((strlen($nick) < 3) || (strlen($nick) > 20)) {
         $wszystko_OK = false;
         $_SESSION['e_nick'] = "Login musi posiadać od 3 do 20 znaków";
@@ -28,6 +32,28 @@ if (isset($_POST['nick'])) {
     }
     $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
 
+    //todo sprawdzenie poprawności imienia i nazwiska
+    /* $imie = $_POST['imie'];
+     if((strlen($imie) < 2) || (strlen($imie) > 20)){
+         $wszystko_OK = false;
+         $_SESSION['e_imie'] = "Imie musi posiadać od 2 do 30 znaków";
+     }
+     if (@filter_var($imie,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+         $wszystko_OK = false;
+         $_SESSION['e_imie'] = "Imie nie może zawierać innych znaków niż alfabet";
+     }
+
+     //sprawdzenie poprawności nazwiska
+     $nazwisko = $_POST['nazwisko'];
+     if((strlen($imie) < 2) || (strlen($imie) > 20)) {
+         $wszystko_OK = false;
+         $_SESSION['e_nazwisko'] = "Nazwisko musi posiadać od 2 do 30 znaków";
+     }
+     if (@filter_var($nazwisko,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+         $wszystko_OK = false;
+         $_SESSION['e_nazwisko'] = "Nazwisko nie może zawierać innych znaków niż alfabet";
+     }*/
+
     //sprawdzenie poprawności email
     $email = $_POST['email'];
     $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -35,6 +61,28 @@ if (isset($_POST['nick'])) {
         $wszystko_OK = false;
         $_SESSION['e_email'] = "Podaj poprawny adres email";
     }
+
+    //todo sprawdzenie poprawności miasta i adresu
+    /*$miasto = $_POST['miasto'];
+    if((strlen($imie) < 2) || (strlen($imie) > 20)) {
+        $wszystko_OK = false;
+        $_SESSION['e_miasto'] = "Miasto musi posiadać od 2 do 30 znaków";
+    }
+    if (@filter_var($miasto,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+        $wszystko_OK = false;
+        $_SESSION['e_miasto'] = "Miasto nie może zawierać innych znaków niż alfabet";
+    }
+
+    //sprawdzenie poprawności adresu
+    $adres = $_POST['adres'];
+    if((strlen($imie) < 2) || (strlen($imie) > 20)) {
+        $wszystko_OK = false;
+        $_SESSION['e_miasto'] = "Adres musi posiadać od 2 do 30 znaków";
+    }
+    if (@filter_var($adres,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[0-9A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+        $wszystko_OK = false;
+        $_SESSION['e_adres'] = "Podaj poprawny adres";
+    }*/
 
     //czy zaakceptowano regulamin
     if (!isset($_POST['regulamin'])) {
@@ -51,11 +99,48 @@ if (isset($_POST['nick'])) {
         $_SESSION['e_captcha'] = "Zaakceptuj CAPTCHA";
     }
 
+    require_once "connect.php";
+    mysqli_report(MYSQLI_REPORT_STRICT);
 
-    if ($wszystko_OK == true) {
-        //Wszystkie testy zaliczone, dodajemy gracza
-        echo "Udana walidacja";
-        exit();
+    try {
+        $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+        if ($polaczenie->connect_errno != 0) {
+            throw new Exception(mysqli_connect_error());
+        } else {
+            //Czy email już istnieje?
+            $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email'");
+            if (!$rezultat) throw new Exception($polaczenie->error);
+            $ile_takich_maili = $rezultat->num_rows;
+            if ($ile_takich_maili > 0) {
+                $wszystko_OK = false;
+                $_SESSION['e_email'] = "Istenieje już konto przypisane do tego adresu email";
+            }
+
+            //Czy nick jest zarezerwowany?
+            $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE user='$nick'");
+            if (!$rezultat) throw new Exception($polaczenie->error);
+            $ile_takich_nickow = $rezultat->num_rows;
+            if ($ile_takich_nickow > 0) {
+                $wszystko_OK = false;
+                $_SESSION['e_nick'] = "Istnieje już konto o podanym loginie. Wybierz inny";
+            }
+
+            //Czy wszystkie testy przeszly
+            if ($wszystko_OK == true) {
+                //Wszystkie testy zaliczone, dodajemy gracza
+                if ($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$nick','$haslo_hash','$imie','$nazwisko','$email','$miasto','$adres')")) {
+                    $_SESSION['udanarejestracja'] = true;
+                    header('Location: witamy.php');
+                } else {
+                    throw new Exception($polaczenie->error);
+                }
+                exit();
+            }
+            $polaczenie->close();
+        }
+    } catch (Exception $e) {
+        echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności</span>';
+        echo '<br />Informacja developerska'.$e;
     }
 }
 
