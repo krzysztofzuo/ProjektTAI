@@ -99,6 +99,17 @@ if (isset($_POST['nick'])) {
         $_SESSION['e_captcha'] = "Zaakceptuj CAPTCHA";
     }
 
+    //zapamiętaj wprowadzone dane
+    $_SESSION['fr_nick'] = $nick;
+    $_SESSION['fr_email'] = $email;
+    $_SESSION['fr_haslo1'] = $haslo1;
+    $_SESSION['fr_haslo2'] = $haslo2;
+    $_SESSION['fr_imie'] = $imie;
+    $_SESSION['fr_naziwsko'] = $nazwisko;
+    $_SESSION['fr_miasto'] = $miasto;
+    $_SESSION['fr_adres'] = $adres;
+    if (isset($_POST['regulamin'])) $_SESSION['fr_regulamin'] = true;
+
     require_once "connect.php";
     mysqli_report(MYSQLI_REPORT_STRICT);
 
@@ -140,7 +151,7 @@ if (isset($_POST['nick'])) {
         }
     } catch (Exception $e) {
         echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności</span>';
-        echo '<br />Informacja developerska'.$e;
+        echo '<br />Informacja developerska' . $e;
     }
 }
 
@@ -168,35 +179,80 @@ if (isset($_POST['nick'])) {
 
 <body>
 <form method="post">
-    Login: <br/><input type="text" name="nick"/><br/>
+    Login: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_nick'])) {
+        echo $_SESSION['fr_nick'];
+        unset($_SESSION['fr_nick']);
+    }
+    ?>" name="nick"/><br/>
     <?php
     if (isset($_SESSION['e_nick'])) {
         echo '<div class="error">' . $_SESSION['e_nick'] . '</div>';
         unset($_SESSION['e_nick']);
     }
     ?>
-    Hasło: <br/><input type="password" name="haslo1"/><br/>
+    Hasło: <br/><input type="password" value="<?php
+    if (isset($_SESSION['fr_haslo1'])) {
+        echo $_SESSION['fr_haslo1'];
+        unset($_SESSION['fr_haslo1']);
+    }
+    ?>" name="haslo1"/><br/>
     <?php
     if (isset($_SESSION['e_haslo'])) {
         echo '<div class="error">' . $_SESSION['e_haslo'] . '</div>';
         unset($_SESSION['e_haslo']);
     }
     ?>
-    Powtórz hasło: <br/><input type="password" name="haslo2"/><br/>
-    Imię: <br/><input type="text" name="imie"/><br/>
-    Nazwisko: <br/><input type="text" name="nazwisko"/><br/>
-    E-mail: <br/><input type="email" name="email"/><br/>
+    Powtórz hasło: <br/><input type="password" value="<?php
+    if (isset($_SESSION['fr_haslo2'])) {
+        echo $_SESSION['fr_haslo2'];
+        unset($_SESSION['fr_haslo2']);
+    }
+    ?>" name="haslo2"/><br/>
+    Imię: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_imie'])) {
+        echo $_SESSION['fr_imie'];
+        unset($_SESSION['fr_imie']);
+    }
+    ?>" name="imie"/><br/>
+    Nazwisko: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_naziwsko'])) {
+        echo $_SESSION['fr_naziwsko'];
+        unset($_SESSION['fr_naziwsko']);
+    }
+    ?>" name="nazwisko"/><br/>
+    E-mail: <br/><input type="email" value="<?php
+    if (isset($_SESSION['fr_email'])) {
+        echo $_SESSION['fr_email'];
+        unset($_SESSION['fr_email']);
+    }
+    ?>" name="email"/><br/>
     <?php
     if (isset($_SESSION['e_email'])) {
         echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
         unset($_SESSION['e_email']);
     }
     ?>
-    Miasto: <br/><input type="text" name="miasto"/><br/>
-    Adres: <br/><input type="text" name="adres"/><br/>
+    Miasto: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_miasto'])) {
+        echo $_SESSION['fr_miasto'];
+        unset($_SESSION['fr_miasto']);
+    }
+    ?>" name="miasto"/><br/>
+    Adres: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_adres'])) {
+        echo $_SESSION['fr_adres'];
+        unset($_SESSION['fr_adres']);
+    }
+    ?>" name="adres"/><br/>
 
     <label>
-        <input type="checkbox" name="regulamin">Akceptuję regulamin
+        <input type="checkbox" name="regulamin"<?php
+        if (isset($_SESSION['fr_regulamin'])) {
+            echo "checked";
+            unset($_SESSION['fr_regulamin']);
+        }
+        ?>>Akceptuję regulamin
     </label>
     <?php
     if (isset($_SESSION['e_regulamin'])) {
