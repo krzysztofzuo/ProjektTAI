@@ -95,7 +95,7 @@ session_start();
             include('rejestracja.php');
             ?>
 
-              <form id="contactForm" name="sentMessage" novalidate="novalidate">
+              <form action="rejestracja.php" method="post">
                   <div class="row">
                       <div class="col-md-6">
                           <div class="form-group">
@@ -168,7 +168,7 @@ session_start();
                               <p class="help-block text-danger"></p>
                           </div>
                           <div class="form-group">
-                              <input class="form-control" id="email" type="text" value="<?php
+                              <input class="form-control" name="email" type="text" value="<?php
                               if (isset($_SESSION['fr_email'])) {
                                   echo $_SESSION['fr_email'];
                                   unset($_SESSION['fr_email']);
@@ -238,14 +238,12 @@ session_start();
                       ?>>Akceptuję regulamin
                   </label>
                   <br/>
-              </form>
 
                       <div class="clearfix"></div>
                       <div class="col-lg-12 text-center">
                           <div id="success"></div>
-                          <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit" value="Zarejestruj się">Zarejestruj się</button>
+                          <input id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit" value="Zarejestruj się"></input>
                       </div>
-                  </div>
               </form>
 
 
@@ -295,19 +293,9 @@ session_start();
 
 
 
-              <form action="zaloguj.php" method="post">
-                  Login: <br/><input type="text" name="login"/><br/>
-                  Hasło: <br/><input type="password" name="haslo"><br/><br/>
-                  <input type="submit" value="Zaloguj się"><br/>
-
-              </form>    </div>
-
-
-
-
-            <form action="zaloguj.php" method="post" id="contactForm" name="sentMessage" novalidate="novalidate">
-                <div class="row">
-                    <div class="col-md-6">
+            <form action="zaloguj.php" method="post">
+                <div class="row text align-content-center"">
+                    <div class="col-lg-12  text-center">
                         <div class="form-group">
                             <input class="form-control" name="login" type="text" placeholder="Your Login *" required="required" data-validation-required-message="Please enter your login.">
                             <p class="help-block text-danger"></p>
@@ -320,7 +308,7 @@ session_start();
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
                         <div id="success"></div>
-                        <input value="Zaloguj się" id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+                        <input value="Zaloguj się" id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit"><br /><br /><br />
 
                 </div>
             </form>
@@ -453,84 +441,7 @@ session_start();
             </div>
         </div>
 
-        <div id="show_account">
-            <?php
-            if (isset($_SESSION['zalogowany'])) {
 
-                echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>] [<a href=\'usun.php\'>Usuwanie konta</a>]</p>';
-                echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
-                echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
-                echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
-                echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
-                echo "<p><b>Adres</b>: " . $_SESSION['adres']. "<br />";
-
-                echo "<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a><br/><br/>";
-            }
-
-            ?>
-        </div>
-        <?php
-        include('edycja.php');
-        ?>
-        <div id="show_edition" style="display: none">
-            <a href='#' onclick='return hide()' class='js-scroll-trigger'>Wróć</a><br/><br/>
-<!--            <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>-->
-<!--            <a href="usun.php">Usuń konto</a><br/><br/>-->
-
-            <form method="post">
-                Imię: <br/><input type="text" value="<?php
-                echo $_SESSION['imie'];
-                ?>" name="imie"/><br/>
-                <?php
-                if (isset($_SESSION['e_imie'])) {
-                    echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
-                    unset($_SESSION['e_imie']);
-                }
-                ?>
-                Nazwisko: <br/><input type="text" value="<?php
-                echo $_SESSION['nazwisko'];
-                ?>" name="nazwisko"/><br/>
-                <?php
-                if (isset($_SESSION['e_nazwisko'])) {
-                    echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
-                    unset($_SESSION['e_nazwisko']);
-                }
-                ?>
-                E-mail: <br/><input type="email" value="<?php
-                echo $_SESSION['email'];
-                ?>" name="email"/><br/>
-                <?php
-                if (isset($_SESSION['e_email'])) {
-                    echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
-                    unset($_SESSION['e_email']);
-                }
-                ?>
-                Miasto: <br/><input type="text" value="<?php
-                echo $_SESSION['miasto'];
-                ?>" name="miasto"/><br/>
-                <?php
-                if (isset($_SESSION['e_miasto'])) {
-                    echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
-                    unset($_SESSION['e_miasto']);
-                }
-                ?>
-                Adres: <br/><input type="text" value="<?php
-                echo $_SESSION['adres'];
-                ?>" name="adres"/><br/>
-                <?php
-                if (isset($_SESSION['e_adres'])) {
-                    echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
-                    unset($_SESSION['e_adres']);
-                }
-                ?>
-                Hasło: <br/><input type="password" name="haslo1"/><br/>
-
-                <input type="submit" value="Edytuj">
-            </form>
-            <?php
-            if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
-            ?>
-        </div>
     </section>
 
     <!-- O mnie  -->
@@ -545,25 +456,89 @@ session_start();
         <div class="row">
           <div class="col-lg-12">
             <ul class="timeline">
-              <li>
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>2009-2011</h4>
-                    <h4 class="subheading">Our Humble Beginnings</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                  </div>
-                </div>
-              </li>
               <li class="timeline-inverted">
                 <div class="timeline-image">
                   <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
                 </div>
                 <div class="timeline-panel">
+                    <div id="show_account">
+                        <?php
+                        if (isset($_SESSION['zalogowany'])) {
+
+                            echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>] [<a href=\'usun.php\'>Usuwanie konta</a>]</p>';
+                            echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
+                            echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
+                            echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
+                            echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
+                            echo "<p><b>Adres</b>: " . $_SESSION['adres']. "<br />";
+
+                            echo "<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a><br/><br/>";
+                        }
+
+                        ?>
+                    </div>
+                    <?php
+                    include('edycja.php');
+                    ?>
+                    <div id="show_edition" style="display: none">
+                        <a href='#' onclick='return hide()' class='js-scroll-trigger'>Wróć</a><br/><br/>
+                        <!--            <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>-->
+                        <!--            <a href="usun.php">Usuń konto</a><br/><br/>-->
+
+                        <form method="post">
+                            Imię: <br/><input type="text" value="<?php
+                            echo $_SESSION['imie'];
+                            ?>" name="imie"/><br/>
+                            <?php
+                            if (isset($_SESSION['e_imie'])) {
+                                echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
+                                unset($_SESSION['e_imie']);
+                            }
+                            ?>
+                            Nazwisko: <br/><input type="text" value="<?php
+                            echo $_SESSION['nazwisko'];
+                            ?>" name="nazwisko"/><br/>
+                            <?php
+                            if (isset($_SESSION['e_nazwisko'])) {
+                                echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
+                                unset($_SESSION['e_nazwisko']);
+                            }
+                            ?>
+                            E-mail: <br/><input type="email" value="<?php
+                            echo $_SESSION['email'];
+                            ?>" name="email"/><br/>
+                            <?php
+                            if (isset($_SESSION['e_email'])) {
+                                echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
+                                unset($_SESSION['e_email']);
+                            }
+                            ?>
+                            Miasto: <br/><input type="text" value="<?php
+                            echo $_SESSION['miasto'];
+                            ?>" name="miasto"/><br/>
+                            <?php
+                            if (isset($_SESSION['e_miasto'])) {
+                                echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
+                                unset($_SESSION['e_miasto']);
+                            }
+                            ?>
+                            Adres: <br/><input type="text" value="<?php
+                            echo $_SESSION['adres'];
+                            ?>" name="adres"/><br/>
+                            <?php
+                            if (isset($_SESSION['e_adres'])) {
+                                echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
+                                unset($_SESSION['e_adres']);
+                            }
+                            ?>
+                            Hasło: <br/><input type="password" name="haslo1"/><br/>
+
+                            <input type="submit" value="Edytuj">
+                        </form>
+                        <?php
+                        if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
+                        ?>
+                    </div>
                   <div class="timeline-heading">
                     <h4>March 2011</h4>
                     <h4 class="subheading">An Agency is Born</h4>
@@ -571,41 +546,6 @@ session_start();
                   <div class="timeline-body">
                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
                   </div>
-                </div>
-              </li>
-              <li>
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>December 2012</h4>
-                    <h4 class="subheading">Transition to Full Service</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>July 2014</h4>
-                    <h4 class="subheading">Phase Two Expansion</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <h4>Be Part
-                    <br>Of Our
-                    <br>Story!</h4>
                 </div>
               </li>
             </ul>
