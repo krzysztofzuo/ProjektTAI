@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['zalogowany'])) {
+    header('Location: index.php');
+    exit();
+}
 unset($_SESSION['blad']);
 if (isset($_POST['email'])) {
 
@@ -52,6 +56,9 @@ if (isset($_POST['email'])) {
 </head>
 
 <body>
+<a href="dane.php">Wróć</a><br/><br/>
+<a href="zmianahasla.php">Zmiana hasła</a><br/><br/>
+
 <form method="post">
     Imię: <br/><input type="text" value="<?php
     echo $_SESSION['imie'];
