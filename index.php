@@ -465,7 +465,7 @@ session_start();
                         <?php
                         if (isset($_SESSION['zalogowany'])) {
                             echo '<div class="timeline-heading">';
-                            echo "[<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a>] [<a href=\"logout.php\">Wyloguj się!</a>] [<a href='usun.php'>Usuwanie konta</a>]<br/><br/>";
+                            echo "[<a href='#about' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a>] [<a href=\"logout.php\">Wyloguj się!</a>] [<a href='usun.php'>Usuwanie konta</a>]<br/><br/>";
 
                             echo "<h4>Witaj " . $_SESSION['user'] . '!</h4>';
                             echo "<h4 class='subheading'>Imię: " . $_SESSION['imie'] . "</h4><br />";
@@ -483,7 +483,7 @@ session_start();
                     include('edycja.php');
                     ?>
                     <div id="show_edition" style="display: none">
-                        <a href='#' onclick='return hide()' class='js-scroll-trigger'>Wróć</a><br/><br/>
+                        <a href='#about' onclick='return hide()' class='js-scroll-trigger'>Wróć</a><br/><br/>
                         <!--            <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>-->
                         <!--            <a href="usun.php">Usuń konto</a><br/><br/>-->
 
