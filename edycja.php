@@ -58,6 +58,7 @@ if (isset($_POST['email'])) {
 <body>
 <a href="dane.php">Wróć</a><br/><br/>
 <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>
+<a href="usun.php">Usuń konto</a><br/><br/>
 
 <form method="post">
     Imię: <br/><input type="text" value="<?php
