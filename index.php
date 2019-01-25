@@ -464,15 +464,17 @@ session_start();
                     <div id="show_account">
                         <?php
                         if (isset($_SESSION['zalogowany'])) {
+                            echo '<div class="timeline-heading">';
+                            echo "[<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a>] [<a href=\"logout.php\">Wyloguj się!</a>] [<a href='usun.php'>Usuwanie konta</a>]<br/><br/>";
 
-                            echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>] [<a href=\'usun.php\'>Usuwanie konta</a>]</p>';
-                            echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
-                            echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
-                            echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
-                            echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
-                            echo "<p><b>Adres</b>: " . $_SESSION['adres']. "<br />";
-
-                            echo "<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a><br/><br/>";
+                            echo "<h4>Witaj " . $_SESSION['user'] . '!</h4>';
+                            echo "<h4 class='subheading'>Imię</h4>: " . $_SESSION['imie'] . "<br />";
+                            echo "<h4 class='subheading'>Nazwisko</h4>: " . $_SESSION['nazwisko'] . "<br />";
+                            echo '</div>          <div class="timeline-body">';
+                            echo '<p class="text-muted">Email: ' . $_SESSION['email'] . "</p><br />";
+                            echo '<p class="text-muted">Miasto: ' . $_SESSION['miasto'] . "</p><br />";
+                            echo '<p class="text-muted">Adres: ' . $_SESSION['adres']. "</p><br/>";
+                            echo '</div>';
                         }
 
                         ?>
@@ -538,14 +540,6 @@ session_start();
                         <?php
                         if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
                         ?>
-                    </div>
-                  <div class="timeline-heading">
-                    <h4>March 2011</h4>
-                    <h4 class="subheading">An Agency is Born</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                  </div>
                 </div>
               </li>
             </ul>
