@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 unset($_SESSION['blad']);
 if (isset($_POST['email'])) {
     $wszystko_OK = true;
