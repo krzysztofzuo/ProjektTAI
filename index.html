@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] = true)) {
+    header('Location: dane.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +31,17 @@
 
      <!-- Moje nadpisane style bootstrapa -->
     <link href="css/nowestyle.css" rel="stylesheet">
+    <style>
+      .error {
+        color: red;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+
+
+    <!-- Recaptcha-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
   </head>
 
@@ -38,7 +58,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link js-scroll-trigger" href="#registration">Rejestracja</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#logon">Logowanie</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
@@ -65,14 +88,179 @@
       </div>
     </header>
 
-    <!-- Usługi -->
-    <section id="services">
+    <!-- Rejestracja -->
+    <section id="registration">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Services</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+
+            <?php
+            include('rejestracja.php');
+            ?>
+            <form method="post">
+              Login: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_nick'])) {
+        echo $_SESSION['fr_nick'];
+        unset($_SESSION['fr_nick']);
+    }
+    ?>" name="nick"/><br/>
+              <?php
+    if (isset($_SESSION['e_nick'])) {
+        echo '<div class="error">' . $_SESSION['e_nick'] . '</div>';
+          unset($_SESSION['e_nick']);
+          }
+          ?>
+          Hasło: <br/><input type="password" value="<?php
+    if (isset($_SESSION['fr_haslo1'])) {
+        echo $_SESSION['fr_haslo1'];
+        unset($_SESSION['fr_haslo1']);
+    }
+    ?>" name="haslo1"/><br/>
+          <?php
+    if (isset($_SESSION['e_haslo'])) {
+        echo '<div class="error">' . $_SESSION['e_haslo'] . '</div>';
+        unset($_SESSION['e_haslo']);
+        }
+        ?>
+        Powtórz hasło: <br/><input type="password" value="<?php
+    if (isset($_SESSION['fr_haslo2'])) {
+        echo $_SESSION['fr_haslo2'];
+        unset($_SESSION['fr_haslo2']);
+    }
+    ?>" name="haslo2"/><br/>
+        Imię: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_imie'])) {
+        echo $_SESSION['fr_imie'];
+        unset($_SESSION['fr_imie']);
+    }
+    ?>" name="imie"/><br/>
+        <?php
+    if (isset($_SESSION['e_imie'])) {
+        echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
+      unset($_SESSION['e_imie']);
+      }
+      ?>
+      Nazwisko: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_naziwsko'])) {
+        echo $_SESSION['fr_naziwsko'];
+        unset($_SESSION['fr_naziwsko']);
+    }
+    ?>" name="nazwisko"/><br/>
+      <?php
+    if (isset($_SESSION['e_nazwisko'])) {
+        echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
+      unset($_SESSION['e_nazwisko']);
+      }
+      ?>
+      E-mail: <br/><input type="email" value="<?php
+    if (isset($_SESSION['fr_email'])) {
+        echo $_SESSION['fr_email'];
+        unset($_SESSION['fr_email']);
+    }
+    ?>" name="email"/><br/>
+      <?php
+    if (isset($_SESSION['e_email'])) {
+        echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
+      unset($_SESSION['e_email']);
+      }
+      ?>
+      Miasto: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_miasto'])) {
+        echo $_SESSION['fr_miasto'];
+        unset($_SESSION['fr_miasto']);
+    }
+    ?>" name="miasto"/><br/>
+      <?php
+    if (isset($_SESSION['e_miasto'])) {
+        echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
+      unset($_SESSION['e_miasto']);
+      }
+      ?>
+      Adres: <br/><input type="text" value="<?php
+    if (isset($_SESSION['fr_adres'])) {
+        echo $_SESSION['fr_adres'];
+        unset($_SESSION['fr_adres']);
+    }
+    ?>" name="adres"/><br/>
+      <?php
+    if (isset($_SESSION['e_adres'])) {
+        echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
+      unset($_SESSION['e_adres']);
+      }
+      ?>
+
+      <label>
+        <input type="checkbox" name="regulamin"<?php
+        if (isset($_SESSION['fr_regulamin'])) {
+            echo "checked";
+            unset($_SESSION['fr_regulamin']);
+        }
+        ?>>Akceptuję regulamin
+      </label>
+      <?php
+    if (isset($_SESSION['e_regulamin'])) {
+        echo '<div class="error">' . $_SESSION['e_regulamin'] . '</div>';
+      unset($_SESSION['e_regulamin']);
+      }
+      ?>
+
+      <div class="g-recaptcha" data-sitekey="6LcRhYwUAAAAAO8kw2GQkyKzmVr8cGVM4cPIjQvV"></div>
+      <?php
+    if (isset($_SESSION['e_captcha'])) {
+        echo '<div class="error">' . $_SESSION['e_captcha'] . '</div>';
+      unset($_SESSION['e_captcha']);
+      }
+      ?>
+      <br/>
+      <input type="submit" value="Zarejestruj się">
+
+      </form>
+              </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">E-Commerce</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Responsive Design</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+          </div>
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fas fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Web Security</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logowanie -->
+    <section id="logon">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Logowanie</h2>
+            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+              <form action="zaloguj.php" method="post">
+                  Login: <br/><input type="text" name="login"/><br/>
+                  Hasło: <br/><input type="password" name="haslo"><br/><br/>
+                  <input type="submit" value="Zaloguj się"><br/>
+
+              </form>    </div>
         </div>
         <div class="row text-center">
           <div class="col-md-4">
@@ -199,6 +387,21 @@
           </div>
         </div>
       </div>
+
+        <?php
+    if (isset($_SESSION['zalogowany'])) {
+        echo "<a href="edycja.php">Edycja konta</a><br/><br/>";
+        echo "<a href="usun.php">Usuwanie konta</a><br/><br/>";
+
+        echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>]</p>';
+        echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
+        echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
+        echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
+        echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
+        echo "<p><b>Adres</b>: " . $_SESSION['adres'];
+    }
+?>
+
     </section>
 
     <!-- O mnie  -->
@@ -572,6 +775,9 @@
         </div>
       </div>
     </div>
+    <?php
+    if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
+    ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
