@@ -15,6 +15,9 @@ if (!isset($_SESSION['zalogowany'])) {
 </head>
 
 <body>
+<a href="edycja.php">Edycja konta</a><br/><br/>
+<a href="usun.php">Usuwanie konta</a><br/><br/>
+
 <?php
 echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>]</p>';
 echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
