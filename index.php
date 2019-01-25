@@ -392,7 +392,7 @@ session_start();
                 echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
                 echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
                 echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
-                echo "<p><b>Adres</b>: " . $_SESSION['adres'];
+                echo "<p><b>Adres</b>: " . $_SESSION['adres']. "<br />";
 
                 echo "<a href='#' onclick='return show()'>Edycja konta</a><br/><br/>";
             }
