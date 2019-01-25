@@ -320,7 +320,7 @@ session_start();
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
                         <div id="success"></div>
-                        <input value="Zaloguj się" id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+                        <input type="submit" value="Zaloguj się"><br/>
 
                 </div>
             </form>
