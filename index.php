@@ -464,7 +464,7 @@ session_start();
                 echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
                 echo "<p><b>Adres</b>: " . $_SESSION['adres']. "<br />";
 
-                echo "<a href='#' onclick='return show()'>Edycja konta</a><br/><br/>";
+                echo "<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a><br/><br/>";
             }
 
             ?>
@@ -473,7 +473,7 @@ session_start();
         include('edycja.php');
         ?>
         <div id="show_edition" style="display: none">
-            <a href='#' onclick='return hide()'>Wróć</a><br/><br/>
+            <a href='#' onclick='return hide()' class='js-scroll-trigger'>Wróć</a><br/><br/>
 <!--            <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>-->
 <!--            <a href="usun.php">Usuń konto</a><br/><br/>-->
 
