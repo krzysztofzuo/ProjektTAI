@@ -309,18 +309,18 @@ session_start();
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            Login: <br/><input class="form-control" placeholder="Your login *" type="text" name="login"/><br/>
-
+                            <input class="form-control" name="login" type="text" placeholder="Your Login *" required="required" data-validation-required-message="Please enter your login.">
+                            <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
-                            Hasło: <br/><input  class="form-control" placeholder="Your pass *" type="password" name="haslo"><br/><br/>
-
+                            <input class="form-control" name="haslo" type="password" placeholder="Your Password *" required="required" data-validation-required-message="Please enter your password.">
+                            <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
                         <div id="success"></div>
-                        <input type="submit" value="Zaloguj się"><br/>
+                        <input value="Zaloguj się" id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
 
                 </div>
             </form>
