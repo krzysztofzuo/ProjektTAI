@@ -36,7 +36,7 @@ try {
 
                     unset($_SESSION['blad']);
                     $rezultat->free_result();
-                    header('Location: dane.php');
+                    header('Location: index.php');
                 } else {
                     $_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
                     header('Location: index.php');

@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] = true)) {
-    header('Location: dane.php');
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -390,8 +385,8 @@ if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] = true)) {
 
         <?php
     if (isset($_SESSION['zalogowany'])) {
-        echo "<a href="edycja.php">Edycja konta</a><br/><br/>";
-        echo "<a href="usun.php">Usuwanie konta</a><br/><br/>";
+        echo "<a href='edycja.php'>Edycja konta</a><br/><br/>";
+        echo "<a href='usun.php'>Usuwanie konta</a><br/><br/>";
 
         echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>]</p>';
         echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
