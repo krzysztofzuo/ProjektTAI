@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(isset($_SESSION['zalogowany'])){
+    header('Location: logout.php');
+    exit();
+}
+
 if (isset($_POST['nick'])) {
     //sprawdzenie poprawności walidacji
     $wszystko_OK = true;
@@ -32,27 +37,27 @@ if (isset($_POST['nick'])) {
     }
     $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
 
-    //todo walidacja imienia i nazwiska
-    /*$imie = $_POST['imie'];
-     if((strlen($imie) < 2) || (strlen($imie) > 20)){
+    //sprawdzenie poprawności imienia
+    $imie = $_POST['imie'];
+     if((strlen($imie) < 2) || (strlen($imie) > 30)){
          $wszystko_OK = false;
          $_SESSION['e_imie'] = "Imie musi posiadać od 2 do 30 znaków";
      }
-     if (@filter_var($imie,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
-         $wszystko_OK = false;
-         $_SESSION['e_imie'] = "Imie nie może zawierać innych znaków niż alfabet";
-     }
+    if (ctype_alpha($imie) == false) {
+        $wszystko_OK = false;
+        $_SESSION['e_imie'] = "Niepoprawne imie";
+    }
 
      //sprawdzenie poprawności nazwiska
      $nazwisko = $_POST['nazwisko'];
-     if((strlen($imie) < 2) || (strlen($imie) > 20)) {
+     if((strlen($imie) < 2) || (strlen($imie) > 30)) {
          $wszystko_OK = false;
          $_SESSION['e_nazwisko'] = "Nazwisko musi posiadać od 2 do 30 znaków";
      }
-     if (@filter_var($nazwisko,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
-         $wszystko_OK = false;
-         $_SESSION['e_nazwisko'] = "Nazwisko nie może zawierać innych znaków niż alfabet";
-     }*/
+    if (ctype_alpha($nazwisko) == false) {
+        $wszystko_OK = false;
+        $_SESSION['e_nazwisko'] = "Niepoprawne nazwisko";
+    }
 
     //sprawdzenie poprawności email
     $email = $_POST['email'];
@@ -62,15 +67,15 @@ if (isset($_POST['nick'])) {
         $_SESSION['e_email'] = "Podaj poprawny adres email";
     }
 
-    //todo walidacja miasta i adresu
-    /*$miasto = $_POST['miasto'];
+    //sprawdzenie poprawności miasta
+    $miasto = $_POST['miasto'];
     if((strlen($imie) < 2) || (strlen($imie) > 20)) {
         $wszystko_OK = false;
         $_SESSION['e_miasto'] = "Miasto musi posiadać od 2 do 30 znaków";
     }
-    if (@filter_var($miasto,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+    if (ctype_alpha($miasto) == false) {
         $wszystko_OK = false;
-        $_SESSION['e_miasto'] = "Miasto nie może zawierać innych znaków niż alfabet";
+        $_SESSION['e_miasto'] = "Niepoprawne miasto";
     }
 
     //sprawdzenie poprawności adresu
@@ -79,10 +84,10 @@ if (isset($_POST['nick'])) {
         $wszystko_OK = false;
         $_SESSION['e_miasto'] = "Adres musi posiadać od 2 do 30 znaków";
     }
-    if (@filter_var($adres,['filter' => FILTER_VALIDATE_REGEXP,'options' => ['regexp' => '/^[0-9A_Za-ząęłńśćźżó_-]{2,30}$/']])==false) {
+    if (ctype_alnum($adres) == false) {
         $wszystko_OK = false;
-        $_SESSION['e_adres'] = "Podaj poprawny adres";
-    }*/
+        $_SESSION['e_adres'] = "Niepoprawny adres";
+    }
 
     //czy zaakceptowano regulamin
     if (!isset($_POST['regulamin'])) {
@@ -215,12 +220,24 @@ if (isset($_POST['nick'])) {
         unset($_SESSION['fr_imie']);
     }
     ?>" name="imie"/><br/>
+    <?php
+    if (isset($_SESSION['e_imie'])) {
+        echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
+        unset($_SESSION['e_imie']);
+    }
+    ?>
     Nazwisko: <br/><input type="text" value="<?php
     if (isset($_SESSION['fr_naziwsko'])) {
         echo $_SESSION['fr_naziwsko'];
         unset($_SESSION['fr_naziwsko']);
     }
     ?>" name="nazwisko"/><br/>
+    <?php
+    if (isset($_SESSION['e_nazwisko'])) {
+        echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
+        unset($_SESSION['e_nazwisko']);
+    }
+    ?>
     E-mail: <br/><input type="email" value="<?php
     if (isset($_SESSION['fr_email'])) {
         echo $_SESSION['fr_email'];
@@ -239,12 +256,24 @@ if (isset($_POST['nick'])) {
         unset($_SESSION['fr_miasto']);
     }
     ?>" name="miasto"/><br/>
+    <?php
+    if (isset($_SESSION['e_miasto'])) {
+        echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
+        unset($_SESSION['e_miasto']);
+    }
+    ?>
     Adres: <br/><input type="text" value="<?php
     if (isset($_SESSION['fr_adres'])) {
         echo $_SESSION['fr_adres'];
         unset($_SESSION['fr_adres']);
     }
     ?>" name="adres"/><br/>
+    <?php
+    if (isset($_SESSION['e_adres'])) {
+        echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
+        unset($_SESSION['e_adres']);
+    }
+    ?>
 
     <label>
         <input type="checkbox" name="regulamin"<?php
