@@ -468,8 +468,8 @@ session_start();
                             echo "[<a href='#' class='js-scroll-trigger' onclick='return show()'>Edycja konta</a>] [<a href=\"logout.php\">Wyloguj się!</a>] [<a href='usun.php'>Usuwanie konta</a>]<br/><br/>";
 
                             echo "<h4>Witaj " . $_SESSION['user'] . '!</h4>';
-                            echo "<h4 class='subheading'>Imię</h4>: " . $_SESSION['imie'] . "<br />";
-                            echo "<h4 class='subheading'>Nazwisko</h4>: " . $_SESSION['nazwisko'] . "<br />";
+                            echo "<h4 class='subheading'>Imię: " . $_SESSION['imie'] . "</h4><br />";
+                            echo "<h4 class='subheading'>Nazwisko: " . $_SESSION['nazwisko'] . "</h4><br />";
                             echo '</div>          <div class="timeline-body">';
                             echo '<p class="text-muted">Email: ' . $_SESSION['email'] . "</p><br />";
                             echo '<p class="text-muted">Miasto: ' . $_SESSION['miasto'] . "</p><br />";
