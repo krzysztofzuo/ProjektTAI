@@ -88,130 +88,172 @@ session_start();
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Services</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase">Rejestracja</h2>
+            <h3 class="section-subheading text-muted">Zarejestruj się.</h3>
 
             <?php
             include('rejestracja.php');
             ?>
-            <form method="post">
-              Login: <br/><input type="text" value="<?php
-    if (isset($_SESSION['fr_nick'])) {
-        echo $_SESSION['fr_nick'];
-        unset($_SESSION['fr_nick']);
-    }
-    ?>" name="nick"/><br/>
-              <?php
-    if (isset($_SESSION['e_nick'])) {
-        echo '<div class="error">' . $_SESSION['e_nick'] . '</div>';
-          unset($_SESSION['e_nick']);
-          }
-          ?>
-          Hasło: <br/><input type="password" value="<?php
-    if (isset($_SESSION['fr_haslo1'])) {
-        echo $_SESSION['fr_haslo1'];
-        unset($_SESSION['fr_haslo1']);
-    }
-    ?>" name="haslo1"/><br/>
-          <?php
-    if (isset($_SESSION['e_haslo'])) {
-        echo '<div class="error">' . $_SESSION['e_haslo'] . '</div>';
-        unset($_SESSION['e_haslo']);
-        }
-        ?>
-        Powtórz hasło: <br/><input type="password" value="<?php
-    if (isset($_SESSION['fr_haslo2'])) {
-        echo $_SESSION['fr_haslo2'];
-        unset($_SESSION['fr_haslo2']);
-    }
-    ?>" name="haslo2"/><br/>
-        Imię: <br/><input type="text" value="<?php
-    if (isset($_SESSION['fr_imie'])) {
-        echo $_SESSION['fr_imie'];
-        unset($_SESSION['fr_imie']);
-    }
-    ?>" name="imie"/><br/>
-        <?php
-    if (isset($_SESSION['e_imie'])) {
-        echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
-      unset($_SESSION['e_imie']);
-      }
-      ?>
-      Nazwisko: <br/><input type="text" value="<?php
-    if (isset($_SESSION['fr_naziwsko'])) {
-        echo $_SESSION['fr_naziwsko'];
-        unset($_SESSION['fr_naziwsko']);
-    }
-    ?>" name="nazwisko"/><br/>
-      <?php
-    if (isset($_SESSION['e_nazwisko'])) {
-        echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
-      unset($_SESSION['e_nazwisko']);
-      }
-      ?>
-      E-mail: <br/><input type="email" value="<?php
-    if (isset($_SESSION['fr_email'])) {
-        echo $_SESSION['fr_email'];
-        unset($_SESSION['fr_email']);
-    }
-    ?>" name="email"/><br/>
-      <?php
-    if (isset($_SESSION['e_email'])) {
-        echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
-      unset($_SESSION['e_email']);
-      }
-      ?>
-      Miasto: <br/><input type="text" value="<?php
-    if (isset($_SESSION['fr_miasto'])) {
-        echo $_SESSION['fr_miasto'];
-        unset($_SESSION['fr_miasto']);
-    }
-    ?>" name="miasto"/><br/>
-      <?php
-    if (isset($_SESSION['e_miasto'])) {
-        echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
-      unset($_SESSION['e_miasto']);
-      }
-      ?>
-      Adres: <br/><input type="text" value="<?php
-    if (isset($_SESSION['fr_adres'])) {
-        echo $_SESSION['fr_adres'];
-        unset($_SESSION['fr_adres']);
-    }
-    ?>" name="adres"/><br/>
-      <?php
-    if (isset($_SESSION['e_adres'])) {
-        echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
-      unset($_SESSION['e_adres']);
-      }
-      ?>
 
-      <label>
-        <input type="checkbox" name="regulamin"<?php
-        if (isset($_SESSION['fr_regulamin'])) {
-            echo "checked";
-            unset($_SESSION['fr_regulamin']);
-        }
-        ?>>Akceptuję regulamin
-      </label>
-      <?php
-    if (isset($_SESSION['e_regulamin'])) {
-        echo '<div class="error">' . $_SESSION['e_regulamin'] . '</div>';
-      unset($_SESSION['e_regulamin']);
-      }
-      ?>
+              <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <input class="form-control" name="nick" type="text" value="<?php
+                              if (isset($_SESSION['fr_nick'])) {
+                                  echo $_SESSION['fr_nick'];
+                                  unset($_SESSION['fr_nick']);
+                              }
+                              ?>" placeholder="Your Nick *" required="required" data-validation-required-message="Please enter your name.">
+                              <?php
+                              if (isset($_SESSION['e_nick'])) {
+                                  echo '<div class="error">' . $_SESSION['e_nick'] . '</div>';
+                                  unset($_SESSION['e_nick']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="haslo1" type="password" value="<?php
+                              if (isset($_SESSION['fr_haslo1'])) {
+                                  echo $_SESSION['fr_haslo1'];
+                                  unset($_SESSION['fr_haslo1']);
+                              }
+                              ?>" placeholder="Your password *" required="required" data-validation-required-message="Please enter your password.">
+                              <?php
+                              if (isset($_SESSION['e_haslo'])) {
+                                  echo '<div class="error">' . $_SESSION['e_haslo'] . '</div>';
+                                  unset($_SESSION['e_haslo']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="haslo2" type="password" value="<?php
+                              if (isset($_SESSION['fr_haslo2'])) {
+                                  echo $_SESSION['fr_haslo2'];
+                                  unset($_SESSION['fr_haslo2']);
+                              }
+                              ?>" placeholder="Your password *" required="required" data-validation-required-message="Please enter your password.">
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="imie" type="text" value="<?php
+                              if (isset($_SESSION['fr_imie'])) {
+                                  echo $_SESSION['fr_imie'];
+                                  unset($_SESSION['fr_imie']);
+                              }
+                              ?>" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
+                              <?php
+                              if (isset($_SESSION['e_imie'])) {
+                                  echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
+                                  unset($_SESSION['e_imie']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="nazwisko" type="text" value="<?php
+                              if (isset($_SESSION['fr_naziwsko'])) {
+                                  echo $_SESSION['fr_naziwsko'];
+                                  unset($_SESSION['fr_naziwsko']);
+                              }
+                              ?>" placeholder="Your Surname *" required="required" data-validation-required-message="Please enter your surname.">
+                              <?php
+                              if (isset($_SESSION['e_nazwisko'])) {
+                                  echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
+                                  unset($_SESSION['e_nazwisko']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" id="email" type="text" value="<?php
+                              if (isset($_SESSION['fr_email'])) {
+                                  echo $_SESSION['fr_email'];
+                                  unset($_SESSION['fr_email']);
+                              }
+                              ?>" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                              <?php
+                              if (isset($_SESSION['e_email'])) {
+                                  echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
+                                  unset($_SESSION['e_email']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="miasto" value="<?php
+                              if (isset($_SESSION['fr_miasto'])) {
+                                  echo $_SESSION['fr_miasto'];
+                                  unset($_SESSION['fr_miasto']);
+                              }
+                              ?>" type="text" placeholder="Your Miasto *" required="required" data-validation-required-message="Please enter your city.">
+                              <?php
+                              if (isset($_SESSION['e_miasto'])) {
+                                  echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
+                                  unset($_SESSION['e_miasto']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="form-group">
+                              <input class="form-control" name="adres" value="<?php
+                              if (isset($_SESSION['fr_adres'])) {
+                                  echo $_SESSION['fr_adres'];
+                                  unset($_SESSION['fr_adres']);
+                              }
+                              ?>" type="text" placeholder="Your Adres *" required="required" data-validation-required-message="Please enter your address.">
+                              <?php
+                              if (isset($_SESSION['e_adres'])) {
+                                  echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
+                                  unset($_SESSION['e_adres']);
+                              }
+                              ?>
+                              <p class="help-block text-danger"></p>
+                          </div>
+                      </div>
 
-      <div class="g-recaptcha" data-sitekey="6LcRhYwUAAAAAO8kw2GQkyKzmVr8cGVM4cPIjQvV"></div>
-      <?php
-    if (isset($_SESSION['e_captcha'])) {
-        echo '<div class="error">' . $_SESSION['e_captcha'] . '</div>';
-      unset($_SESSION['e_captcha']);
-      }
-      ?>
-      <br/>
-      <input type="submit" value="Zarejestruj się">
+                      <?php
+                      if (isset($_SESSION['e_regulamin'])) {
+                          echo '<div class="error">' . $_SESSION['e_regulamin'] . '</div>';
+                          unset($_SESSION['e_regulamin']);
+                      }
+                      ?>
+                      </div>
 
-      </form>
+                  <div class="g-recaptcha" data-sitekey="6LcRhYwUAAAAAO8kw2GQkyKzmVr8cGVM4cPIjQvV"></div>
+                  <?php
+                  if (isset($_SESSION['e_captcha'])) {
+                      echo '<div class="error">' . $_SESSION['e_captcha'] . '</div>';
+                      unset($_SESSION['e_captcha']);
+                  }
+                  ?>
+                  <label>
+                      <input type="checkbox" name="regulamin"<?php
+                      if (isset($_SESSION['fr_regulamin'])) {
+                          echo "checked";
+                          unset($_SESSION['fr_regulamin']);
+                      }
+                      ?>>Akceptuję regulamin
+                  </label>
+                  <br/>
+              </form>
+
+                      <div class="clearfix"></div>
+                      <div class="col-lg-12 text-center">
+                          <div id="success"></div>
+                          <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit" value="Zarejestruj się">Zarejestruj się</button>
+                      </div>
+                  </div>
+              </form>
+
+
+
+
+
+
+
               </div>
         </div>
         <div class="row text-center">
@@ -249,13 +291,41 @@ session_start();
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Logowanie</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h3 class="section-subheading text-muted">Zaloguj się.</h3>
+
+
+
               <form action="zaloguj.php" method="post">
                   Login: <br/><input type="text" name="login"/><br/>
                   Hasło: <br/><input type="password" name="haslo"><br/><br/>
                   <input type="submit" value="Zaloguj się"><br/>
 
               </form>    </div>
+
+
+
+
+            <form action="zaloguj.php" method="post" id="contactForm" name="sentMessage" novalidate="novalidate">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" name="login" type="text" placeholder="Your Login *" required="required" data-validation-required-message="Please enter your login.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="haslo" type="password" placeholder="Your Password *" required="required" data-validation-required-message="Please enter your password.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 text-center">
+                        <div id="success"></div>
+                        <input value="Zaloguj się" id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+
+                </div>
+            </form>
+
+
         </div>
         <div class="row text-center">
           <div class="col-md-4">
