@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 unset($_SESSION['blad']);
 if (isset($_POST['email'])) {
@@ -91,73 +90,3 @@ if (isset($_POST['email'])) {
     $polaczenie->close();
 }
 ?>
-
-
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Projekt TAI</title>
-</head>
-
-<body>
-<a href="dane.php">Wróć</a><br/><br/>
-<a href="zmianahasla.php">Zmiana hasła</a><br/><br/>
-<a href="usun.php">Usuń konto</a><br/><br/>
-
-<form method="post">
-    Imię: <br/><input type="text" value="<?php
-    echo $_SESSION['imie'];
-    ?>" name="imie"/><br/>
-    <?php
-    if (isset($_SESSION['e_imie'])) {
-        echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
-        unset($_SESSION['e_imie']);
-    }
-    ?>
-    Nazwisko: <br/><input type="text" value="<?php
-    echo $_SESSION['nazwisko'];
-    ?>" name="nazwisko"/><br/>
-    <?php
-    if (isset($_SESSION['e_nazwisko'])) {
-        echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
-        unset($_SESSION['e_nazwisko']);
-    }
-    ?>
-    E-mail: <br/><input type="email" value="<?php
-    echo $_SESSION['email'];
-    ?>" name="email"/><br/>
-    <?php
-    if (isset($_SESSION['e_email'])) {
-        echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
-        unset($_SESSION['e_email']);
-    }
-    ?>
-    Miasto: <br/><input type="text" value="<?php
-    echo $_SESSION['miasto'];
-    ?>" name="miasto"/><br/>
-    <?php
-    if (isset($_SESSION['e_miasto'])) {
-        echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
-        unset($_SESSION['e_miasto']);
-    }
-    ?>
-    Adres: <br/><input type="text" value="<?php
-    echo $_SESSION['adres'];
-    ?>" name="adres"/><br/>
-    <?php
-    if (isset($_SESSION['e_adres'])) {
-        echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
-        unset($_SESSION['e_adres']);
-    }
-    ?>
-    Hasło: <br/><input type="password" name="haslo1"/><br/>
-
-    <input type="submit" value="Edytuj">
-</form>
-<?php
-if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
-?>
-</body>
-</html>

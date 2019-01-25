@@ -288,115 +288,179 @@ session_start();
 
     <!-- Portfolio -->
     <section class="bg-light" id="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Portfolio</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Portfolio</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Threads</h4>
+                        <p class="text-muted">Illustration</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Explore</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Finish</h4>
+                        <p class="text-muted">Identity</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Lines</h4>
+                        <p class="text-muted">Branding</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Southwest</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fas fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Window</h4>
+                        <p class="text-muted">Photography</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Threads</h4>
-              <p class="text-muted">Illustration</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Explore</h4>
-              <p class="text-muted">Graphic Design</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Finish</h4>
-              <p class="text-muted">Identity</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Lines</h4>
-              <p class="text-muted">Branding</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Southwest</h4>
-              <p class="text-muted">Website Design</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fas fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Window</h4>
-              <p class="text-muted">Photography</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
+        <div id="show_account">
+            <?php
+            if (isset($_SESSION['zalogowany'])) {
+
+                echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>] [<a href=\'usun.php\'>Usuwanie konta</a>]</p>';
+                echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
+                echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
+                echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
+                echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
+                echo "<p><b>Adres</b>: " . $_SESSION['adres'];
+
+                echo "<a onclick='return show()'>Edycja konta</a><br/><br/>";
+            }
+
+            ?>
+        </div>
         <?php
-    if (isset($_SESSION['zalogowany'])) {
-        echo "<a href='edycja.php'>Edycja konta</a><br/><br/>";
-        echo "<a href='usun.php'>Usuwanie konta</a><br/><br/>";
+        include('edycja.php');
+        ?>
+        <div id="show_edition" style="display: none">
+            <a onclick='return hide()'>Wróć</a><br/><br/>
+<!--            <a href="zmianahasla.php">Zmiana hasła</a><br/><br/>-->
+<!--            <a href="usun.php">Usuń konto</a><br/><br/>-->
 
-        echo "<p>Witaj " . $_SESSION['user'] . '! [<a href="logout.php">Wyloguj się!</a>]</p>';
-        echo "<p><b>Imię</b>: " . $_SESSION['imie'] . "<br />";
-        echo "<p><b>Nazwisko</b>: " . $_SESSION['nazwisko'] . "<br />";
-        echo "<p><b>Email</b>: " . $_SESSION['email'] . "<br />";
-        echo "<p><b>Miasto</b>: " . $_SESSION['miasto'] . "<br />";
-        echo "<p><b>Adres</b>: " . $_SESSION['adres'];
-    }
-?>
+            <form method="post">
+                Imię: <br/><input type="text" value="<?php
+                echo $_SESSION['imie'];
+                ?>" name="imie"/><br/>
+                <?php
+                if (isset($_SESSION['e_imie'])) {
+                    echo '<div class="error">' . $_SESSION['e_imie'] . '</div>';
+                    unset($_SESSION['e_imie']);
+                }
+                ?>
+                Nazwisko: <br/><input type="text" value="<?php
+                echo $_SESSION['nazwisko'];
+                ?>" name="nazwisko"/><br/>
+                <?php
+                if (isset($_SESSION['e_nazwisko'])) {
+                    echo '<div class="error">' . $_SESSION['e_nazwisko'] . '</div>';
+                    unset($_SESSION['e_nazwisko']);
+                }
+                ?>
+                E-mail: <br/><input type="email" value="<?php
+                echo $_SESSION['email'];
+                ?>" name="email"/><br/>
+                <?php
+                if (isset($_SESSION['e_email'])) {
+                    echo '<div class="error">' . $_SESSION['e_email'] . '</div>';
+                    unset($_SESSION['e_email']);
+                }
+                ?>
+                Miasto: <br/><input type="text" value="<?php
+                echo $_SESSION['miasto'];
+                ?>" name="miasto"/><br/>
+                <?php
+                if (isset($_SESSION['e_miasto'])) {
+                    echo '<div class="error">' . $_SESSION['e_miasto'] . '</div>';
+                    unset($_SESSION['e_miasto']);
+                }
+                ?>
+                Adres: <br/><input type="text" value="<?php
+                echo $_SESSION['adres'];
+                ?>" name="adres"/><br/>
+                <?php
+                if (isset($_SESSION['e_adres'])) {
+                    echo '<div class="error">' . $_SESSION['e_adres'] . '</div>';
+                    unset($_SESSION['e_adres']);
+                }
+                ?>
+                Hasło: <br/><input type="password" name="haslo1"/><br/>
 
+                <input type="submit" value="Edytuj">
+            </form>
+            <?php
+            if (isset($_SESSION['blad'])) echo $_SESSION['blad'];
+            ?>
+        </div>
     </section>
 
     <!-- O mnie  -->
@@ -787,7 +851,18 @@ session_start();
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
+    <script>
+        function show() {
+            document.getElementById('show_edition').style.display = 'block';
+            document.getElementById('show_account').style.display = 'none';
+        }
 
+        function hide() {
+            document.getElementById('show_account').style.display = 'block';
+            document.getElementById('show_edition').style.display = 'none';
+        }
+
+    </script>
   </body>
 
 </html>
