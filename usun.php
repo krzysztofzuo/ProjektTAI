@@ -40,7 +40,7 @@ if (isset($_POST['haslo'])) {
 </head>
 
 <body>
-<a href="dane.php">Wróć</a><br/><br/>
+<a href="index.php">Wróć</a><br/><br/>
 
 <form method="post">
     Hasło: <br/><input type="password" name="haslo"/><br/>
